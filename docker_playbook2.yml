@@ -1,0 +1,15 @@
+---
+- hosts: docker
+  become: yes
+  become_user: root
+  tasks:
+  - name: "Update"
+    apt:
+      upgrade: "yes"
+      update_cache: true
+      cache_valid_time: 3600
+      force_apt_get: true
+  - name: installing docker
+    apt:
+      name: docker.io
+      state: present
