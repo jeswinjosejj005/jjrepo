@@ -10,7 +10,7 @@
       instance_type: t2.micro
       security_group: docker_sg1
       image: ami-03a0c45ebc70f98ea
-      keypair: winkp.pem
+      keypair: winkp
       region: us-east-2 
       count: 1
  
