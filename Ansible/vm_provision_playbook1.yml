@@ -20,6 +20,8 @@
       - name: Create a security group
         local_action: 
           module: ec2_group
+          aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
+          aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') }}"
           name: "{{ security_group }}"
           description: Security Group for  EC2 Servers
           region: "{{ region }}"
@@ -43,6 +45,8 @@
         
       - name: Launching new EC2 Instance
         local_action: ec2 
+                      aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
+                      aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') }}"
                       group={{ security_group }} 
                       instance_type={{ instance_type}} 
                       image={{ image }} 
