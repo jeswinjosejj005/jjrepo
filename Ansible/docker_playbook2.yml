@@ -1,7 +1,5 @@
 ---
 - hosts: docker
-  become: yes
-  become_user: root
   tasks:
   - name: "Update"
     apt:
