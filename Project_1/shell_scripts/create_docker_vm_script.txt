@@ -1,0 +1,8 @@
+#!/bin/bash
+vm_provision=/home/jenkins/vm_provision_playbook1.yml
+VM=/home/jenkins/Docker_VM.txt
+if grep -q $(aws ec2 describe-instances | grep PublicIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.' | tail -1) "$VM"; then
+    echo "Docker VM exists"
+else
+   ansible-playbook $vm_provision 
+fi

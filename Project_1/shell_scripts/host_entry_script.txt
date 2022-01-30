@@ -1,0 +1,9 @@
+
+#!/bin/bash
+host=/etc/ansible/hosts
+if grep -q $(aws ec2 describe-instances | grep PublicIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.' | tail -1) "$host"; then
+    echo "ip exists in host file "
+else
+   aws ec2 describe-instances | grep PublicIpAddress | grep -o -P "\d+\.\d+\.\d+\.\d+" | grep -v '^10\.' | tail -1 >> /etc/ansible/hosts
+fi
+

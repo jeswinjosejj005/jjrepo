@@ -1,0 +1,8 @@
+
+#!/bin/bash
+USERNAME=jenkins
+HOST=`cat /home/jenkins/Docker_VM.txt`
+SCRIPT="sudo docker stop con1; sudo docker rm con1; sudo docker rmi jeswinjosejj005/docker_repo; sudo docker pull jeswinjosejj005/docker_repo; sudo docker run -d -p 8080:8080 --name con1 jeswinjosejj005/docker_repo"
+for HOSTNAME in ${HOST} ; do
+    ssh -l ${USERNAME} ${HOSTNAME} "${SCRIPT}"
+done
